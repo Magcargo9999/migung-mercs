@@ -1,9 +1,9 @@
 // 에셋 로딩·스프라이트 그리기 (도트 원본 색은 건드리지 않음. 배치 A 검사만 제공된 마스크로 색 변형)
 var G = window.G = window.G || {};
 G.A = { img: {}, ready: false, recolorCache: {} };
-var AM = window.ASSET_MANIFEST, AH = window.ASSET_HUMAN, AE = window.ASSET_ELF, AD = window.ASSET_DWARF, AM2 = window.ASSET_DEMON, ADN = window.ASSET_DNH, AWF = window.ASSET_WOLF, ACT = window.ASSET_CAT, ALZ = window.ASSET_LIZARD;
+var AM = window.ASSET_MANIFEST, AH = window.ASSET_HUMAN, AE = window.ASSET_ELF, AD = window.ASSET_DWARF, AM2 = window.ASSET_DEMON, ADN = window.ASSET_DNH, AWF = window.ASSET_WOLF, ACT = window.ASSET_CAT, ALZ = window.ASSET_LIZARD, ADR = window.ASSET_DRAGON;
 // 종족별 도트 세트: 인간·엘프 시트가 있다 (없는 종족은 기존 도트)
-G.A.setOf = function (m) { return m.race === 'human' ? { A: AH, p: 'hum' } : m.race === 'elf' && AE ? { A: AE, p: 'elf' } : m.race === 'dwarf' && AD ? { A: AD, p: 'dwarf' } : m.race === 'demon' && AM2 ? { A: AM2, p: 'demon' } : m.race === 'wolf' && AWF ? { A: AWF, p: 'wolf' } : m.race === 'cat' && ACT ? { A: ACT, p: 'cat' } : m.race === 'lizard' && ALZ ? { A: ALZ, p: 'lizard' } : null; };
+G.A.setOf = function (m) { return m.race === 'human' ? { A: AH, p: 'hum' } : m.race === 'elf' && AE ? { A: AE, p: 'elf' } : m.race === 'dwarf' && AD ? { A: AD, p: 'dwarf' } : m.race === 'demon' && AM2 ? { A: AM2, p: 'demon' } : m.race === 'wolf' && AWF ? { A: AWF, p: 'wolf' } : m.race === 'cat' && ACT ? { A: ACT, p: 'cat' } : m.race === 'lizard' && ALZ ? { A: ALZ, p: 'lizard' } : m.race === 'dragon' && ADR ? { A: ADR, p: 'dragon' } : null; };
 
 G.A.load = function (onDone, onProgress) {
   var files = {};
@@ -13,7 +13,7 @@ G.A.load = function (onDone, onProgress) {
   var B = AM.batchA;
   Object.keys(B.anims).forEach(function (k) { files['ba:' + k] = B.anims[k].file; });
   Object.keys(B.masks).forEach(function (an) { Object.keys(B.masks[an]).forEach(function (ch) { files['bam:' + an + ':' + ch] = B.masks[an][ch]; }); });
-  [['hum', AH], ['elf', AE], ['dwarf', AD], ['demon', AM2], ['dnh', ADN], ['wolf', AWF], ['cat', ACT], ['lizard', ALZ]].forEach(function (q) { if (!q[1]) return; files[q[0] + ':outfits'] = q[1].outfits.file; files[q[0] + ':mh'] = q[1].outfits.maskHair; files[q[0] + ':ms'] = q[1].outfits.maskSkin; if (q[1].portraits) files[q[0] + ':portraits'] = q[1].portraits.file; });
+  [['hum', AH], ['elf', AE], ['dwarf', AD], ['demon', AM2], ['dnh', ADN], ['wolf', AWF], ['cat', ACT], ['lizard', ALZ], ['dragon', ADR]].forEach(function (q) { if (!q[1]) return; files[q[0] + ':outfits'] = q[1].outfits.file; files[q[0] + ':mh'] = q[1].outfits.maskHair; files[q[0] + ':ms'] = q[1].outfits.maskSkin; if (q[1].portraits) files[q[0] + ':portraits'] = q[1].portraits.file; });
   files['ba:shadow'] = B.shadow; files['ba:fx'] = B.fx.file;
   Object.keys(B.tiles).forEach(function (k) { files['bat:' + k] = B.tiles[k]; });
   var keys = Object.keys(files), n = 0;
@@ -30,7 +30,7 @@ G.A.load = function (onDone, onProgress) {
 G.A.visual = function (u, S) {
   if (u.cls) {
     var mh = u.mercRef || u.m;
-    if (mh && G.A.setOf(mh) && (!S || S.settings.human !== 'old')) return { type: 'human', merc: mh, scale: ({ hum: 0.82, dwarf: 1.05, wolf: 0.9, cat: 1.05, lizard: 1.08 }[G.A.setOf(mh).p] || 1.0) * G.A.build(mh) };
+    if (mh && G.A.setOf(mh) && (!S || S.settings.human !== 'old')) return { type: 'human', merc: mh, scale: ({ hum: 0.82, dwarf: 1.05, wolf: 0.9, cat: 1.05, lizard: 1.08, dragon: 1.15 }[G.A.setOf(mh).p] || 1.0) * G.A.build(mh) };
     var sp = G.D.CLASSES[u.cls].sprite;
     if (sp === 'swordsman' && u.cls === 'swordsman' && S && S.settings.swordSprite === 'batchA') return { type: 'batchA', scale: 3 };
     return { type: 'sheet', sheet: 'ch_' + sp, scale: 0.85 };
