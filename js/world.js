@@ -22,7 +22,7 @@ G.W.newGame = function (f) {
     roster: [], dead: [], retired: [], applicants: [], notices: 0, quests: [], shop: [], market: { relics: [], potions: [] }, auction: [],
     inv: { items: [], cons: { potion: 6, calmPotion: 1, antidote: 2, torch: 0, ration: 8, ale: 2 }, books: [], statItems: [], relics: [], relicSlots: [] },
     buildings: {}, deepest: 1, checkpoints: [1], bossKills: {}, rivals: [], news: [], codex: { monsters: {}, traits: {}, items: {}, relics: {}, races: {} },
-    tactics: { formation: {}, tempo: 'normal', engage: 'balanced', leader: null }, settings: { swordSprite: 'batchA', tiles: 'batchA', recolor: true, speed: 1, portrait: 'variant', human: 'sheet', autoSkip: false },
+    tactics: { formation: {}, tempo: 'normal', engage: 'balanced', leader: null }, settings: { swordSprite: 'batchA', tiles: 'batchA', recolor: true, speed: 1, portrait: 'variant', human: 'mod', autoSkip: false },
     exp: null, heroTitle: null, yearData: null, evals: [], bonus: {}, unpaid: 0, founderId: null, lastExp: null, ended: false,
     inbox: [], bonds: {}, reports: [], coaches: [], coachPool: []
   };
@@ -568,7 +568,7 @@ G.W.save = function (S) {
   try { localStorage.setItem(G.W.SAVE_KEY, JSON.stringify({ S: S, rng: G.rng.s })); return true; } catch (e) { return false; }
 };
 G.W.load = function () {
-  try { var raw = localStorage.getItem(G.W.SAVE_KEY); if (!raw) return null; var o = JSON.parse(raw); G.rng = new G.RNG(o.rng); o.S.settings = Object.assign({ swordSprite: 'batchA', tiles: 'batchA', recolor: true, speed: 1, portrait: 'variant', human: 'sheet', autoSkip: false }, o.S.settings || {}); G.Social.ensure(o.S); return o.S; } catch (e) { return null; }
+  try { var raw = localStorage.getItem(G.W.SAVE_KEY); if (!raw) return null; var o = JSON.parse(raw); G.rng = new G.RNG(o.rng); o.S.settings = Object.assign({ swordSprite: 'batchA', tiles: 'batchA', recolor: true, speed: 1, portrait: 'variant', human: 'mod', autoSkip: false }, o.S.settings || {}); G.Social.ensure(o.S); return o.S; } catch (e) { return null; }
 };
 G.W.exportText = function (S) { return JSON.stringify({ S: S, rng: G.rng.s }); };
-G.W.importText = function (t) { var o = JSON.parse(t); if (!o || !o.S || !o.S.roster) throw new Error('저장 파일 형식이 아니다'); G.rng = new G.RNG(o.rng); o.S.settings = Object.assign({ swordSprite: 'batchA', tiles: 'batchA', recolor: true, speed: 1, portrait: 'variant', human: 'sheet', autoSkip: false }, o.S.settings || {}); G.Social.ensure(o.S); return o.S; };
+G.W.importText = function (t) { var o = JSON.parse(t); if (!o || !o.S || !o.S.roster) throw new Error('저장 파일 형식이 아니다'); G.rng = new G.RNG(o.rng); o.S.settings = Object.assign({ swordSprite: 'batchA', tiles: 'batchA', recolor: true, speed: 1, portrait: 'variant', human: 'mod', autoSkip: false }, o.S.settings || {}); G.Social.ensure(o.S); return o.S; };

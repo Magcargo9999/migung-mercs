@@ -1,7 +1,7 @@
 // 에셋 로딩·스프라이트 그리기 (도트 원본 색은 건드리지 않음. 배치 A 검사만 제공된 마스크로 색 변형)
 var G = window.G = window.G || {};
 G.A = { img: {}, ready: false, recolorCache: {} };
-var AM = window.ASSET_MANIFEST, AH = window.ASSET_HUMAN, AE = window.ASSET_ELF, AD = window.ASSET_DWARF, AM2 = window.ASSET_DEMON, ADN = window.ASSET_DNH, AWF = window.ASSET_WOLF, ACT = window.ASSET_CAT, ALZ = window.ASSET_LIZARD, ADR = window.ASSET_DRAGON;
+var AM = window.ASSET_MANIFEST, AH = window.ASSET_HUMAN, AE = window.ASSET_ELF, AD = window.ASSET_DWARF, AM2 = window.ASSET_DEMON, ADN = window.ASSET_DNH, AWF = window.ASSET_WOLF, ACT = window.ASSET_CAT, ALZ = window.ASSET_LIZARD, ADR = window.ASSET_DRAGON, AHM = window.ASSET_HMOD;
 // 종족별 도트 세트: 인간·엘프 시트가 있다 (없는 종족은 기존 도트)
 G.A.setOf = function (m) { return m.race === 'human' ? { A: AH, p: 'hum' } : m.race === 'elf' && AE ? { A: AE, p: 'elf' } : m.race === 'dwarf' && AD ? { A: AD, p: 'dwarf' } : m.race === 'demon' && AM2 ? { A: AM2, p: 'demon' } : m.race === 'wolf' && AWF ? { A: AWF, p: 'wolf' } : m.race === 'cat' && ACT ? { A: ACT, p: 'cat' } : m.race === 'lizard' && ALZ ? { A: ALZ, p: 'lizard' } : m.race === 'dragon' && ADR ? { A: ADR, p: 'dragon' } : null; };
 
@@ -14,6 +14,7 @@ G.A.load = function (onDone, onProgress) {
   Object.keys(B.anims).forEach(function (k) { files['ba:' + k] = B.anims[k].file; });
   Object.keys(B.masks).forEach(function (an) { Object.keys(B.masks[an]).forEach(function (ch) { files['bam:' + an + ':' + ch] = B.masks[an][ch]; }); });
   [['hum', AH], ['elf', AE], ['dwarf', AD], ['demon', AM2], ['dnh', ADN], ['wolf', AWF], ['cat', ACT], ['lizard', ALZ], ['dragon', ADR]].forEach(function (q) { if (!q[1]) return; files[q[0] + ':outfits'] = q[1].outfits.file; files[q[0] + ':mh'] = q[1].outfits.maskHair; files[q[0] + ':ms'] = q[1].outfits.maskSkin; if (q[1].portraits) files[q[0] + ':portraits'] = q[1].portraits.file; });
+  if (AHM) files['hmod:parts'] = AHM.file;
   files['ba:shadow'] = B.shadow; files['ba:fx'] = B.fx.file;
   Object.keys(B.tiles).forEach(function (k) { files['bat:' + k] = B.tiles[k]; });
   var keys = Object.keys(files), n = 0;
@@ -141,7 +142,69 @@ G.A.dirIndex = function (A, grp, vi, dir) {
   return 0;
 };
 // 합성된 한 장 (캐시): {cv, ax, ay}
+
+// ───── 인간 모듈러 조합 (머리 없는 복장 + 머리 바탕 + 얼굴 부품 + 헤어) ─────
+G.A.SKINS = ['#f6d2b0', '#eec29a', '#dba37c', '#c4875f', '#a96a45', '#7e4d33'];
+G.A.isMod = function (m) { return m.race === 'human' && AHM && G.S && G.S.settings.human === 'mod'; };
+G.A.modLook = function (m, L) {
+  var h = G.A.hash(String(m.id) + m.name + 'mod');
+  if (L.hs == null) L.hs = h % 12;
+  if (L.hcol == null) L.hcol = L.hs === 11 ? 6 : (h >> 4) % 12;
+  if (L.sk == null) L.sk = (h >> 8) % 4 + (m.age > 40 ? 0 : 0);
+  if (L.br == null) L.br = (h >> 11) % 5;
+  if (L.mo == null) L.mo = [0, 1, 2, 3, 4, 5][(h >> 14) % 6];
+  if (L.bd == null) L.bd = (m.age >= 30 && (h >> 17) % 3 === 0) ? (h >> 19) % 5 : -1;
+  var st = m.stats || {}, b = ((st.str || 8) + (st.con || 8)) / 2;
+  L.bld = b < 7 ? 0 : b < 12 ? 1 : 2;
+  return L;
+};
+G.A.partCanvas = function (key, target) {
+  var fr = AHM.frames[key], im = G.A.img['hmod:parts'], w = fr[2], h = fr[3];
+  var ck = 'pc:' + key + '|' + (target || ''); if (G.A.recolorCache[ck]) return G.A.recolorCache[ck];
+  var c = document.createElement('canvas'); c.width = w; c.height = h; var x = c.getContext('2d'); x.imageSmoothingEnabled = false;
+  x.drawImage(im, fr[0], fr[1], w, h, 0, 0, w, h);
+  var c0 = AHM.c0[key];
+  if (target && c0) {
+    var T = G.A.hex(target), mul = [0, 1, 2].map(function (i) { return Math.min(1, T[i] / Math.max(1, c0[i])); });
+    var add = [0, 1, 2].map(function (i) { return Math.max(0, T[i] - c0[i] * mul[i]); });
+    x.globalCompositeOperation = 'multiply'; x.fillStyle = 'rgb(' + mul.map(function (v) { return Math.round(v * 255); }).join(',') + ')'; x.fillRect(0, 0, w, h);
+    x.globalCompositeOperation = 'lighter'; x.fillStyle = 'rgb(' + add.map(Math.round).join(',') + ')'; x.fillRect(0, 0, w, h);
+    x.globalCompositeOperation = 'destination-in'; x.drawImage(im, fr[0], fr[1], w, h, 0, 0, w, h);
+  }
+  return G.A.recolorCache[ck] = c;
+};
+G.A.modFrame = function (m, dir, recolor) {
+  var L = G.A.modLook(m, G.A.humanLook(m)), d = { down: 0, left: 1, up: 2, right: 3 }[dir] || 0;
+  var ck = 'mf:' + [L.hg, L.vi, L.bld, L.hs, L.hcol, L.sk, L.eye, L.br, L.mo, L.bd, d, recolor ? 1 : 0].join('|');
+  if (G.A.recolorCache[ck]) return G.A.recolorCache[ck];
+  if (!G.A.img['hmod:parts'] || !G.A.img['hmod:parts'].width) return null;
+  var F = AHM.frames, W = 170, H = 170, cx = W / 2;
+  var cv = document.createElement('canvas'); cv.width = W; cv.height = H; var x = cv.getContext('2d'); x.imageSmoothingEnabled = true; x.imageSmoothingQuality = 'high';
+  var put = function (c, px, py, sc) { sc = sc || 1; x.drawImage(c, Math.round(px), Math.round(py), Math.round(c.width * sc), Math.round(c.height * sc)); };
+  var okey = 'out_' + L.hg + '_' + L.vi + '_' + d; if (!F[okey]) okey = 'out_swordsman_0_' + d;
+  var oc = G.A.partCanvas(okey), ox = cx - oc.width / 2, oy = 150 - oc.height; put(oc, ox, oy);
+  var hk = 'head_' + L.bld + '_' + d, hc = G.A.partCanvas(hk, recolor ? G.A.SKINS[L.sk] : null), hx = cx - hc.width / 2, hy = oy - hc.height + 8;
+  put(hc, hx, hy);
+  var hcx = hx + hc.width / 2, hcy = hy + hc.height / 2, sc = function (k, s) { var c = G.A.partCanvas(k); return { c: c, w: Math.round(c.width * s), h: Math.round(c.height * s) }; };
+  var draw = function (o, px, py) { x.drawImage(o.c, Math.round(px), Math.round(py), o.w, o.h); };
+  if (d === 0) {
+    var l = sc('eyeF_' + L.eye * 2, 0.62), r = sc('eyeF_' + (L.eye * 2 + 1), 0.62), ey = hcy + 4;
+    draw(l, hcx - l.w - 4, ey - l.h / 2); draw(r, hcx + 4, ey - r.h / 2);
+    var b = sc('brow_' + L.br, 0.55); draw(b, hcx - b.w / 2, ey - l.h / 2 - b.h);
+    var mo = sc('mouth_' + L.mo, 0.45); draw(mo, hcx - mo.w / 2, hy + hc.height - mo.h - 9);
+    if (L.bd >= 0) { var bb = sc('beardF_' + L.bd, 0.75); draw(bb, hcx - bb.w / 2, hy + hc.height - bb.h + 1); }
+  } else if (d === 1 || d === 3) {
+    var fx = d === 1 ? -1 : 1, e = sc('eyeS_' + (L.eye * 2 + (d === 1 ? 0 : 1)), 0.62);
+    draw(e, hcx + fx * 10 - e.w / 2, hcy - e.h / 2 + 4);
+    var m2 = sc('mouth_' + L.mo, 0.4); draw(m2, hcx + fx * 13 - m2.w / 2, hy + hc.height - m2.h - 9);
+    if (L.bd >= 0) { var bs = sc('beardS_' + L.bd, 0.75); draw(bs, hcx + fx * 9 - bs.w / 2 + (fx > 0 ? 3 : -3), hy + hc.height - bs.h + 1); }
+  }
+  var hair = G.A.partCanvas('hair_' + L.hs + '_' + d, recolor ? AHM.sw[L.hcol] : null), hs = 1.25;
+  x.drawImage(hair, Math.round(hcx - hair.width * hs / 2), Math.round(hcy - hair.height * hs + 14), Math.round(hair.width * hs), Math.round(hair.height * hs));
+  return G.A.recolorCache[ck] = { cv: cv, ax: cx, ay: 150 };
+};
 G.A.humanFrame = function (m, dir, recolor) {
+  if (G.A.isMod(m)) return G.A.modFrame(m, dir, recolor !== false);
   var SO = G.A.setOf(m), A = SO.A, pre = SO.p, L = G.A.humanLook(m), PM = A.portraits.meta[L.pv];
   var AO = A; if (!A.outfits.frames[L.hg + '_0_0'] && ADN) { AO = ADN; pre = 'dnh'; } // 다른 종족의 나머지 직업: 뿔을 지운 마족 직업 복장
   var di = G.A.dirIndex(AO, L.hg, L.vi, dir);
@@ -286,7 +349,7 @@ G.A.portrait = function (canvas, m, S, t) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   if (G.A.setOf(m) && S.settings.human !== 'old') {
     var L = G.A.humanLook(m), SO = G.A.setOf(m);
-    if (S.settings.portrait !== 'battle') {
+    if (S.settings.portrait !== 'battle' && !G.A.isMod(m)) {
       var pf = SO.A.portraits.frames[L.pv], pim = G.A.img[SO.p + ':portraits'];
       if (pf && pim && pim.width) {
         var k = Math.min(canvas.width / pf[2], canvas.height / pf[3]), w = pf[2] * k, h = pf[3] * k;

@@ -630,7 +630,7 @@ G.UI.settings = function () {
   var S = G.S, st = S.settings;
   var b = function (k, v, t) { return '<button class="sm ' + (st[k] === v ? 'on' : '') + '" data-set="' + k + '" data-v="' + v + '">' + t + '</button>'; };
   G.UI.modal('설정', '<label class="small gold">검사 도트</label><div class="choices">' + b('swordSprite', 'batchA', '배치 A (32×48)') + b('swordSprite', 'sheet', '이미지 시트') + '</div>' +
-    '<label class="small gold">인간 도트 (인간 시트: 의상 4방향 + 완성 초상화)</label><div class="choices">' + b('human', 'sheet', '인간 시트') + b('human', 'old', '기존 도트') + '</div>' +
+    '<label class="small gold">인간 도트 (인간 시트: 의상 4방향 + 완성 초상화)</label><div class="choices">' + b('human', 'mod', '모듈러 조합 (헤어·얼굴)') + b('human', 'sheet', '완성 시트') + b('human', 'old', '기존 도트') + '</div>' +
     '<label class="small gold">머리·피부 색을 초상화에 맞춰 변형 (인간 시트 전신 도트)</label><div class="choices">' + b('recolor', true, '켜기') + b('recolor', false, '끄기 (원본 색 그대로)') + '</div>' +
     '<label class="small gold">초상화</label><div class="choices">' + b('portrait', 'variant', '의상 변형 (외형 규격서)') + b('portrait', 'battle', '전투 도트와 동일') + '</div>' +
     '<label class="small gold">미궁 타일</label><div class="choices">' + b('tiles', 'batchA', '배치 A 타일') + b('tiles', 'hd', '고해상도 시트 타일') + '</div>' +
