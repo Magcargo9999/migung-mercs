@@ -1,0 +1,1675 @@
+{
+  "format_version": "1.0",
+  "batch": "A",
+  "status": "awaiting_user_approval",
+  "engine": "HTML_CSS_JavaScript_Canvas",
+  "pixel_filter": "nearest",
+  "license_note": "original pixel-game assets continuing previously developed user project prototype, no third-party character assets",
+  "character_id": "char_human_std_swordsman",
+  "frame_size": [
+    32,
+    48
+  ],
+  "anchor": {
+    "type": "foot_bottom_center",
+    "x": 16,
+    "y": 40
+  },
+  "directions": [
+    "down",
+    "left",
+    "right",
+    "up"
+  ],
+  "palettes": {
+    "base": "palette/palette_master.png",
+    "base_hex": "palette/palette_master_hex.json",
+    "accents": "palette/palette_effect_accents.png"
+  },
+  "shadow": {
+    "file": "effects/shadow_ellipse_32x16.png",
+    "size": [
+      32,
+      16
+    ],
+    "anchor": [
+      16,
+      8
+    ],
+    "draw_offset_from_character_anchor": [
+      -16,
+      -8
+    ]
+  },
+  "animations": {
+    "idle": {
+      "file": "bodies/human_std/sheets/char_human_std_idle_32x48.png",
+      "frame_size": [
+        32,
+        48
+      ],
+      "sheet_size": [
+        64,
+        192
+      ],
+      "frame_count": 8,
+      "direction_count": 4,
+      "per_direction_count": 2,
+      "fps": 4.545,
+      "frame_ms": 220,
+      "loop": true,
+      "row_order": [
+        "down",
+        "left",
+        "right",
+        "up"
+      ],
+      "origin": "top_left",
+      "frames": [
+        {
+          "direction": "down",
+          "frame": 1,
+          "rect": [
+            0,
+            0,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_idle_down_01.png",
+          "fx_index": null
+        },
+        {
+          "direction": "down",
+          "frame": 2,
+          "rect": [
+            32,
+            0,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_idle_down_02.png",
+          "fx_index": null
+        },
+        {
+          "direction": "left",
+          "frame": 1,
+          "rect": [
+            0,
+            48,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_idle_left_01.png",
+          "fx_index": null
+        },
+        {
+          "direction": "left",
+          "frame": 2,
+          "rect": [
+            32,
+            48,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_idle_left_02.png",
+          "fx_index": null
+        },
+        {
+          "direction": "right",
+          "frame": 1,
+          "rect": [
+            0,
+            96,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_idle_right_01.png",
+          "fx_index": null
+        },
+        {
+          "direction": "right",
+          "frame": 2,
+          "rect": [
+            32,
+            96,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_idle_right_02.png",
+          "fx_index": null
+        },
+        {
+          "direction": "up",
+          "frame": 1,
+          "rect": [
+            0,
+            144,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_idle_up_01.png",
+          "fx_index": null
+        },
+        {
+          "direction": "up",
+          "frame": 2,
+          "rect": [
+            32,
+            144,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_idle_up_02.png",
+          "fx_index": null
+        }
+      ]
+    },
+    "walk": {
+      "file": "bodies/human_std/sheets/char_human_std_walk_32x48.png",
+      "frame_size": [
+        32,
+        48
+      ],
+      "sheet_size": [
+        192,
+        192
+      ],
+      "frame_count": 24,
+      "direction_count": 4,
+      "per_direction_count": 6,
+      "fps": 9.091,
+      "frame_ms": 110,
+      "loop": true,
+      "row_order": [
+        "down",
+        "left",
+        "right",
+        "up"
+      ],
+      "origin": "top_left",
+      "frames": [
+        {
+          "direction": "down",
+          "frame": 1,
+          "rect": [
+            0,
+            0,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_walk_down_01.png",
+          "fx_index": null
+        },
+        {
+          "direction": "down",
+          "frame": 2,
+          "rect": [
+            32,
+            0,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_walk_down_02.png",
+          "fx_index": null
+        },
+        {
+          "direction": "down",
+          "frame": 3,
+          "rect": [
+            64,
+            0,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_walk_down_03.png",
+          "fx_index": null
+        },
+        {
+          "direction": "down",
+          "frame": 4,
+          "rect": [
+            96,
+            0,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_walk_down_04.png",
+          "fx_index": null
+        },
+        {
+          "direction": "down",
+          "frame": 5,
+          "rect": [
+            128,
+            0,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_walk_down_05.png",
+          "fx_index": null
+        },
+        {
+          "direction": "down",
+          "frame": 6,
+          "rect": [
+            160,
+            0,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_walk_down_06.png",
+          "fx_index": null
+        },
+        {
+          "direction": "left",
+          "frame": 1,
+          "rect": [
+            0,
+            48,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_walk_left_01.png",
+          "fx_index": null
+        },
+        {
+          "direction": "left",
+          "frame": 2,
+          "rect": [
+            32,
+            48,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_walk_left_02.png",
+          "fx_index": null
+        },
+        {
+          "direction": "left",
+          "frame": 3,
+          "rect": [
+            64,
+            48,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_walk_left_03.png",
+          "fx_index": null
+        },
+        {
+          "direction": "left",
+          "frame": 4,
+          "rect": [
+            96,
+            48,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_walk_left_04.png",
+          "fx_index": null
+        },
+        {
+          "direction": "left",
+          "frame": 5,
+          "rect": [
+            128,
+            48,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_walk_left_05.png",
+          "fx_index": null
+        },
+        {
+          "direction": "left",
+          "frame": 6,
+          "rect": [
+            160,
+            48,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_walk_left_06.png",
+          "fx_index": null
+        },
+        {
+          "direction": "right",
+          "frame": 1,
+          "rect": [
+            0,
+            96,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_walk_right_01.png",
+          "fx_index": null
+        },
+        {
+          "direction": "right",
+          "frame": 2,
+          "rect": [
+            32,
+            96,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_walk_right_02.png",
+          "fx_index": null
+        },
+        {
+          "direction": "right",
+          "frame": 3,
+          "rect": [
+            64,
+            96,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_walk_right_03.png",
+          "fx_index": null
+        },
+        {
+          "direction": "right",
+          "frame": 4,
+          "rect": [
+            96,
+            96,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_walk_right_04.png",
+          "fx_index": null
+        },
+        {
+          "direction": "right",
+          "frame": 5,
+          "rect": [
+            128,
+            96,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_walk_right_05.png",
+          "fx_index": null
+        },
+        {
+          "direction": "right",
+          "frame": 6,
+          "rect": [
+            160,
+            96,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_walk_right_06.png",
+          "fx_index": null
+        },
+        {
+          "direction": "up",
+          "frame": 1,
+          "rect": [
+            0,
+            144,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_walk_up_01.png",
+          "fx_index": null
+        },
+        {
+          "direction": "up",
+          "frame": 2,
+          "rect": [
+            32,
+            144,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_walk_up_02.png",
+          "fx_index": null
+        },
+        {
+          "direction": "up",
+          "frame": 3,
+          "rect": [
+            64,
+            144,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_walk_up_03.png",
+          "fx_index": null
+        },
+        {
+          "direction": "up",
+          "frame": 4,
+          "rect": [
+            96,
+            144,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_walk_up_04.png",
+          "fx_index": null
+        },
+        {
+          "direction": "up",
+          "frame": 5,
+          "rect": [
+            128,
+            144,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_walk_up_05.png",
+          "fx_index": null
+        },
+        {
+          "direction": "up",
+          "frame": 6,
+          "rect": [
+            160,
+            144,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_walk_up_06.png",
+          "fx_index": null
+        }
+      ]
+    },
+    "attack": {
+      "file": "bodies/human_std/sheets/char_human_std_attack_32x48.png",
+      "frame_size": [
+        32,
+        48
+      ],
+      "sheet_size": [
+        160,
+        192
+      ],
+      "frame_count": 20,
+      "direction_count": 4,
+      "per_direction_count": 5,
+      "fps": 11.765,
+      "frame_ms": 85,
+      "loop": false,
+      "row_order": [
+        "down",
+        "left",
+        "right",
+        "up"
+      ],
+      "origin": "top_left",
+      "frames": [
+        {
+          "direction": "down",
+          "frame": 1,
+          "rect": [
+            0,
+            0,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_attack_down_01.png",
+          "fx_index": 0
+        },
+        {
+          "direction": "down",
+          "frame": 2,
+          "rect": [
+            32,
+            0,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_attack_down_02.png",
+          "fx_index": 1
+        },
+        {
+          "direction": "down",
+          "frame": 3,
+          "rect": [
+            64,
+            0,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_attack_down_03.png",
+          "fx_index": 2
+        },
+        {
+          "direction": "down",
+          "frame": 4,
+          "rect": [
+            96,
+            0,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_attack_down_04.png",
+          "fx_index": 3
+        },
+        {
+          "direction": "down",
+          "frame": 5,
+          "rect": [
+            128,
+            0,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_attack_down_05.png",
+          "fx_index": 4
+        },
+        {
+          "direction": "left",
+          "frame": 1,
+          "rect": [
+            0,
+            48,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_attack_left_01.png",
+          "fx_index": 0
+        },
+        {
+          "direction": "left",
+          "frame": 2,
+          "rect": [
+            32,
+            48,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_attack_left_02.png",
+          "fx_index": 1
+        },
+        {
+          "direction": "left",
+          "frame": 3,
+          "rect": [
+            64,
+            48,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_attack_left_03.png",
+          "fx_index": 2
+        },
+        {
+          "direction": "left",
+          "frame": 4,
+          "rect": [
+            96,
+            48,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_attack_left_04.png",
+          "fx_index": 3
+        },
+        {
+          "direction": "left",
+          "frame": 5,
+          "rect": [
+            128,
+            48,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_attack_left_05.png",
+          "fx_index": 4
+        },
+        {
+          "direction": "right",
+          "frame": 1,
+          "rect": [
+            0,
+            96,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_attack_right_01.png",
+          "fx_index": 0
+        },
+        {
+          "direction": "right",
+          "frame": 2,
+          "rect": [
+            32,
+            96,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_attack_right_02.png",
+          "fx_index": 1
+        },
+        {
+          "direction": "right",
+          "frame": 3,
+          "rect": [
+            64,
+            96,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_attack_right_03.png",
+          "fx_index": 2
+        },
+        {
+          "direction": "right",
+          "frame": 4,
+          "rect": [
+            96,
+            96,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_attack_right_04.png",
+          "fx_index": 3
+        },
+        {
+          "direction": "right",
+          "frame": 5,
+          "rect": [
+            128,
+            96,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_attack_right_05.png",
+          "fx_index": 4
+        },
+        {
+          "direction": "up",
+          "frame": 1,
+          "rect": [
+            0,
+            144,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_attack_up_01.png",
+          "fx_index": 0
+        },
+        {
+          "direction": "up",
+          "frame": 2,
+          "rect": [
+            32,
+            144,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_attack_up_02.png",
+          "fx_index": 1
+        },
+        {
+          "direction": "up",
+          "frame": 3,
+          "rect": [
+            64,
+            144,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_attack_up_03.png",
+          "fx_index": 2
+        },
+        {
+          "direction": "up",
+          "frame": 4,
+          "rect": [
+            96,
+            144,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_attack_up_04.png",
+          "fx_index": 3
+        },
+        {
+          "direction": "up",
+          "frame": 5,
+          "rect": [
+            128,
+            144,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_attack_up_05.png",
+          "fx_index": 4
+        }
+      ]
+    },
+    "hit": {
+      "file": "bodies/human_std/sheets/char_human_std_hit_32x48.png",
+      "frame_size": [
+        32,
+        48
+      ],
+      "sheet_size": [
+        64,
+        192
+      ],
+      "frame_count": 8,
+      "direction_count": 4,
+      "per_direction_count": 2,
+      "fps": 9.524,
+      "frame_ms": 105,
+      "loop": false,
+      "row_order": [
+        "down",
+        "left",
+        "right",
+        "up"
+      ],
+      "origin": "top_left",
+      "frames": [
+        {
+          "direction": "down",
+          "frame": 1,
+          "rect": [
+            0,
+            0,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_hit_down_01.png",
+          "fx_index": null
+        },
+        {
+          "direction": "down",
+          "frame": 2,
+          "rect": [
+            32,
+            0,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_hit_down_02.png",
+          "fx_index": null
+        },
+        {
+          "direction": "left",
+          "frame": 1,
+          "rect": [
+            0,
+            48,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_hit_left_01.png",
+          "fx_index": null
+        },
+        {
+          "direction": "left",
+          "frame": 2,
+          "rect": [
+            32,
+            48,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_hit_left_02.png",
+          "fx_index": null
+        },
+        {
+          "direction": "right",
+          "frame": 1,
+          "rect": [
+            0,
+            96,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_hit_right_01.png",
+          "fx_index": null
+        },
+        {
+          "direction": "right",
+          "frame": 2,
+          "rect": [
+            32,
+            96,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_hit_right_02.png",
+          "fx_index": null
+        },
+        {
+          "direction": "up",
+          "frame": 1,
+          "rect": [
+            0,
+            144,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_hit_up_01.png",
+          "fx_index": null
+        },
+        {
+          "direction": "up",
+          "frame": 2,
+          "rect": [
+            32,
+            144,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_hit_up_02.png",
+          "fx_index": null
+        }
+      ]
+    },
+    "death": {
+      "file": "bodies/human_std/sheets/char_human_std_death_32x48.png",
+      "frame_size": [
+        32,
+        48
+      ],
+      "sheet_size": [
+        160,
+        48
+      ],
+      "frame_count": 5,
+      "direction_count": 1,
+      "per_direction_count": 5,
+      "fps": 5.882,
+      "frame_ms": 170,
+      "loop": false,
+      "row_order": [
+        "down"
+      ],
+      "origin": "top_left",
+      "frames": [
+        {
+          "direction": "down",
+          "frame": 1,
+          "rect": [
+            0,
+            0,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_death_down_01.png",
+          "fx_index": null
+        },
+        {
+          "direction": "down",
+          "frame": 2,
+          "rect": [
+            32,
+            0,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_death_down_02.png",
+          "fx_index": null
+        },
+        {
+          "direction": "down",
+          "frame": 3,
+          "rect": [
+            64,
+            0,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_death_down_03.png",
+          "fx_index": null
+        },
+        {
+          "direction": "down",
+          "frame": 4,
+          "rect": [
+            96,
+            0,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_death_down_04.png",
+          "fx_index": null
+        },
+        {
+          "direction": "down",
+          "frame": 5,
+          "rect": [
+            128,
+            0,
+            32,
+            48
+          ],
+          "anchor": [
+            16,
+            40
+          ],
+          "file": "bodies/human_std/frames/char_human_std_death_down_05.png",
+          "fx_index": null
+        }
+      ]
+    }
+  },
+  "fx": {
+    "file": "effects/fx_sword_slash_64x64.png",
+    "frame_size": [
+      64,
+      64
+    ],
+    "frames": [
+      {
+        "frame": 0,
+        "sheet_rect": [
+          0,
+          0,
+          64,
+          64
+        ],
+        "fx_anchor": [
+          32,
+          32
+        ]
+      },
+      {
+        "frame": 1,
+        "sheet_rect": [
+          64,
+          0,
+          64,
+          64
+        ],
+        "fx_anchor": [
+          32,
+          32
+        ]
+      },
+      {
+        "frame": 2,
+        "sheet_rect": [
+          128,
+          0,
+          64,
+          64
+        ],
+        "fx_anchor": [
+          32,
+          32
+        ]
+      },
+      {
+        "frame": 3,
+        "sheet_rect": [
+          192,
+          0,
+          64,
+          64
+        ],
+        "fx_anchor": [
+          32,
+          32
+        ]
+      },
+      {
+        "frame": 4,
+        "sheet_rect": [
+          256,
+          0,
+          64,
+          64
+        ],
+        "fx_anchor": [
+          32,
+          32
+        ]
+      }
+    ],
+    "timing_ms": [
+      85,
+      85,
+      85,
+      85,
+      85
+    ],
+    "attach_to_animation": "attack",
+    "anchor": [
+      32,
+      32
+    ],
+    "attack_fx_offsets_per_direction": {
+      "down": [
+        [
+          3,
+          -17
+        ],
+        [
+          0,
+          -21
+        ],
+        [
+          -6,
+          -19
+        ],
+        [
+          -6,
+          -17
+        ],
+        [
+          -2,
+          -16
+        ]
+      ],
+      "left": [
+        [
+          -15,
+          -17
+        ],
+        [
+          -18,
+          -24
+        ],
+        [
+          -23,
+          -21
+        ],
+        [
+          -20,
+          -16
+        ],
+        [
+          -15,
+          -15
+        ]
+      ],
+      "right": [
+        [
+          15,
+          -17
+        ],
+        [
+          17,
+          -24
+        ],
+        [
+          22,
+          -21
+        ],
+        [
+          19,
+          -16
+        ],
+        [
+          15,
+          -15
+        ]
+      ],
+      "up": [
+        [
+          5,
+          -23
+        ],
+        [
+          8,
+          -25
+        ],
+        [
+          12,
+          -23
+        ],
+        [
+          10,
+          -19
+        ],
+        [
+          6,
+          -16
+        ]
+      ]
+    }
+  },
+  "recolor_masks": {
+    "idle": {
+      "skin": "bodies/human_std/masks/mask_human_std_idle_skin.png",
+      "hair": "bodies/human_std/masks/mask_human_std_idle_hair.png",
+      "eyes": "bodies/human_std/masks/mask_human_std_idle_eyes.png",
+      "cloth_main": "bodies/human_std/masks/mask_human_std_idle_cloth_main.png",
+      "cloth_secondary": "bodies/human_std/masks/mask_human_std_idle_cloth_secondary.png"
+    },
+    "walk": {
+      "skin": "bodies/human_std/masks/mask_human_std_walk_skin.png",
+      "hair": "bodies/human_std/masks/mask_human_std_walk_hair.png",
+      "eyes": "bodies/human_std/masks/mask_human_std_walk_eyes.png",
+      "cloth_main": "bodies/human_std/masks/mask_human_std_walk_cloth_main.png",
+      "cloth_secondary": "bodies/human_std/masks/mask_human_std_walk_cloth_secondary.png"
+    },
+    "attack": {
+      "skin": "bodies/human_std/masks/mask_human_std_attack_skin.png",
+      "hair": "bodies/human_std/masks/mask_human_std_attack_hair.png",
+      "eyes": "bodies/human_std/masks/mask_human_std_attack_eyes.png",
+      "cloth_main": "bodies/human_std/masks/mask_human_std_attack_cloth_main.png",
+      "cloth_secondary": "bodies/human_std/masks/mask_human_std_attack_cloth_secondary.png"
+    },
+    "hit": {
+      "skin": "bodies/human_std/masks/mask_human_std_hit_skin.png",
+      "hair": "bodies/human_std/masks/mask_human_std_hit_hair.png",
+      "eyes": "bodies/human_std/masks/mask_human_std_hit_eyes.png",
+      "cloth_main": "bodies/human_std/masks/mask_human_std_hit_cloth_main.png",
+      "cloth_secondary": "bodies/human_std/masks/mask_human_std_hit_cloth_secondary.png"
+    },
+    "death": {
+      "skin": "bodies/human_std/masks/mask_human_std_death_skin.png",
+      "hair": "bodies/human_std/masks/mask_human_std_death_hair.png",
+      "eyes": "bodies/human_std/masks/mask_human_std_death_eyes.png",
+      "cloth_main": "bodies/human_std/masks/mask_human_std_death_cloth_main.png",
+      "cloth_secondary": "bodies/human_std/masks/mask_human_std_death_cloth_secondary.png"
+    }
+  },
+  "world_preview": {
+    "room": "previews/scene_upper_room.png",
+    "composite": "previews/scene_upper_room_with_swordsman.png"
+  },
+  "tiles": {
+    "floor_stone": {
+      "file": "tiles/upper/tile_floor_stone_32x32.png",
+      "size": [
+        32,
+        32
+      ],
+      "atlas": "tiles/upper/tiles_upper_floor_atlas.png",
+      "rect": [
+        0,
+        0,
+        32,
+        32
+      ]
+    },
+    "floor_stone_variation": {
+      "file": "tiles/upper/tile_floor_stone_variation_32x32.png",
+      "size": [
+        32,
+        32
+      ],
+      "atlas": "tiles/upper/tiles_upper_floor_atlas.png",
+      "rect": [
+        32,
+        0,
+        32,
+        32
+      ]
+    },
+    "floor_moss": {
+      "file": "tiles/upper/tile_floor_moss_32x32.png",
+      "size": [
+        32,
+        32
+      ],
+      "atlas": "tiles/upper/tiles_upper_floor_atlas.png",
+      "rect": [
+        64,
+        0,
+        32,
+        32
+      ]
+    },
+    "floor_crack": {
+      "file": "tiles/upper/tile_floor_crack_32x32.png",
+      "size": [
+        32,
+        32
+      ],
+      "atlas": "tiles/upper/tiles_upper_floor_atlas.png",
+      "rect": [
+        96,
+        0,
+        32,
+        32
+      ]
+    },
+    "floor_wet": {
+      "file": "tiles/upper/tile_floor_wet_32x32.png",
+      "size": [
+        32,
+        32
+      ],
+      "atlas": "tiles/upper/tiles_upper_floor_atlas.png",
+      "rect": [
+        0,
+        32,
+        32,
+        32
+      ]
+    },
+    "floor_dirt": {
+      "file": "tiles/upper/tile_floor_dirt_32x32.png",
+      "size": [
+        32,
+        32
+      ],
+      "atlas": "tiles/upper/tiles_upper_floor_atlas.png",
+      "rect": [
+        32,
+        32,
+        32,
+        32
+      ]
+    },
+    "floor_water": {
+      "file": "tiles/upper/tile_floor_water_32x32.png",
+      "size": [
+        32,
+        32
+      ],
+      "atlas": "tiles/upper/tiles_upper_floor_atlas.png",
+      "rect": [
+        64,
+        32,
+        32,
+        32
+      ]
+    },
+    "floor_edge": {
+      "file": "tiles/upper/tile_floor_edge_32x32.png",
+      "size": [
+        32,
+        32
+      ],
+      "atlas": "tiles/upper/tiles_upper_floor_atlas.png",
+      "rect": [
+        96,
+        32,
+        32,
+        32
+      ]
+    },
+    "wall_stone": {
+      "file": "tiles/upper/tile_wall_stone_32x48.png",
+      "size": [
+        32,
+        48
+      ],
+      "anchor": [
+        16,
+        47
+      ],
+      "atlas": "tiles/upper/tiles_upper_wall_props_atlas.png",
+      "rect": [
+        0,
+        0,
+        32,
+        48
+      ]
+    },
+    "wall_moss": {
+      "file": "tiles/upper/tile_wall_moss_32x48.png",
+      "size": [
+        32,
+        48
+      ],
+      "anchor": [
+        16,
+        47
+      ],
+      "atlas": "tiles/upper/tiles_upper_wall_props_atlas.png",
+      "rect": [
+        32,
+        0,
+        32,
+        48
+      ]
+    },
+    "wall_corner_left": {
+      "file": "tiles/upper/tile_wall_corner_left_32x48.png",
+      "size": [
+        32,
+        48
+      ],
+      "anchor": [
+        16,
+        47
+      ],
+      "atlas": "tiles/upper/tiles_upper_wall_props_atlas.png",
+      "rect": [
+        64,
+        0,
+        32,
+        48
+      ]
+    },
+    "wall_corner_right": {
+      "file": "tiles/upper/tile_wall_corner_right_32x48.png",
+      "size": [
+        32,
+        48
+      ],
+      "anchor": [
+        16,
+        47
+      ],
+      "atlas": "tiles/upper/tiles_upper_wall_props_atlas.png",
+      "rect": [
+        96,
+        0,
+        32,
+        48
+      ]
+    },
+    "column": {
+      "file": "tiles/upper/prop_column_32x48.png",
+      "size": [
+        32,
+        48
+      ],
+      "anchor": [
+        16,
+        47
+      ],
+      "atlas": "tiles/upper/tiles_upper_wall_props_atlas.png",
+      "rect": [
+        128,
+        0,
+        32,
+        48
+      ]
+    },
+    "door": {
+      "file": "tiles/upper/prop_door_32x48.png",
+      "size": [
+        32,
+        48
+      ],
+      "anchor": [
+        16,
+        47
+      ],
+      "atlas": "tiles/upper/tiles_upper_wall_props_atlas.png",
+      "rect": [
+        160,
+        0,
+        32,
+        48
+      ]
+    },
+    "wall_torch": {
+      "file": "tiles/upper/prop_wall_torch_32x48.png",
+      "size": [
+        32,
+        48
+      ],
+      "anchor": [
+        16,
+        47
+      ],
+      "atlas": "tiles/upper/tiles_upper_wall_props_atlas.png",
+      "rect": [
+        192,
+        0,
+        32,
+        48
+      ]
+    }
+  },
+  "visual_qa_previews": {
+    "contact": "previews/batch_a_contact_sheet.png",
+    "large_animation": "previews/animation_contact_extra.png",
+    "background_visibility": "previews/visibility_dark_medium.png"
+  }
+}

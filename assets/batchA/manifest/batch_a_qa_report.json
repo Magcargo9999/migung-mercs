@@ -1,0 +1,39 @@
+{
+  "batch": "A",
+  "timestamp": "2026-11-02",
+  "summary": {
+    "character_frames": 65,
+    "idle": 8,
+    "walk": 24,
+    "attack": 20,
+    "hit": 8,
+    "death": 5,
+    "recolor_mask_channels": 5,
+    "base_palette_colors": 46,
+    "accent_palette_colors": 5,
+    "frame_source": "previous user-project 32x48 established swordsman sprite basis"
+  },
+  "checks": {
+    "1_exact_frame_size": true,
+    "2_binary_alpha": true,
+    "3_common_foot_anchor": true,
+    "4_palette_bounded": true,
+    "5_character_consistency_4_directions": "visual_review_required",
+    "6_nearest_neighbor_clean": "nearest_used_no_fractional_scale",
+    "7_visibility_dark_and_medium_background": "manual_preview_available",
+    "8_original_design": "based_on_previous_original_project_swordsman_not_third_party"
+  },
+  "issues": {
+    "size_errors": [],
+    "alpha_fail": [],
+    "palette_fail": [],
+    "filename_fail": []
+  },
+  "limitations": [
+    "Animations are pixel-authored prototype motions derived from the established 32x48 project sprites, not individually hand-illustrated frame-by-frame polished character art.",
+    "Death poses use transforms and require artistic review for anatomy.",
+    "Slash motion visual effect is isolated into a 64x64 5-frame layer and position synchronized via JSON, manual engine in-game tuning may be needed.",
+    "Tile room sample is a 2D quarter-view staging prototype, not a 3D/WebGL mesh or an actual map file.",
+    "Masks rely on color-region IDs and are prototype recolor channels; dynamic hair/skin integration remains for later batches."
+  ]
+}

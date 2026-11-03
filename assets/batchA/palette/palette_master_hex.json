@@ -1,0 +1,218 @@
+{
+  "palette_id": "migun_v1_0",
+  "base_colors": [
+    {
+      "index": 0,
+      "hex": "#263d4b"
+    },
+    {
+      "index": 1,
+      "hex": "#292630"
+    },
+    {
+      "index": 2,
+      "hex": "#3b2a2c"
+    },
+    {
+      "index": 3,
+      "hex": "#414a56"
+    },
+    {
+      "index": 4,
+      "hex": "#675052"
+    },
+    {
+      "index": 5,
+      "hex": "#707e8b"
+    },
+    {
+      "index": 6,
+      "hex": "#714332"
+    },
+    {
+      "index": 7,
+      "hex": "#784a34"
+    },
+    {
+      "index": 8,
+      "hex": "#855629"
+    },
+    {
+      "index": 9,
+      "hex": "#a46947"
+    },
+    {
+      "index": 10,
+      "hex": "#aab8bd"
+    },
+    {
+      "index": 11,
+      "hex": "#ab6c44"
+    },
+    {
+      "index": 12,
+      "hex": "#ae6b50"
+    },
+    {
+      "index": 13,
+      "hex": "#c58a45"
+    },
+    {
+      "index": 14,
+      "hex": "#c6b08b"
+    },
+    {
+      "index": 15,
+      "hex": "#d09361"
+    },
+    {
+      "index": 16,
+      "hex": "#d49a62"
+    },
+    {
+      "index": 17,
+      "hex": "#dae3de"
+    },
+    {
+      "index": 18,
+      "hex": "#e6a879"
+    },
+    {
+      "index": 19,
+      "hex": "#eed9ae"
+    },
+    {
+      "index": 20,
+      "hex": "#f1c87a"
+    },
+    {
+      "index": 21,
+      "hex": "#f8c895"
+    },
+    {
+      "index": 22,
+      "hex": "#373439"
+    },
+    {
+      "index": 23,
+      "hex": "#4f4d51"
+    },
+    {
+      "index": 24,
+      "hex": "#636367"
+    },
+    {
+      "index": 25,
+      "hex": "#777577"
+    },
+    {
+      "index": 26,
+      "hex": "#8f8b88"
+    },
+    {
+      "index": 27,
+      "hex": "#4c494f"
+    },
+    {
+      "index": 28,
+      "hex": "#3a4534"
+    },
+    {
+      "index": 29,
+      "hex": "#515e3c"
+    },
+    {
+      "index": 30,
+      "hex": "#6b7149"
+    },
+    {
+      "index": 31,
+      "hex": "#294250"
+    },
+    {
+      "index": 32,
+      "hex": "#395e68"
+    },
+    {
+      "index": 33,
+      "hex": "#607e81"
+    },
+    {
+      "index": 34,
+      "hex": "#463129"
+    },
+    {
+      "index": 35,
+      "hex": "#684531"
+    },
+    {
+      "index": 36,
+      "hex": "#8d6341"
+    },
+    {
+      "index": 37,
+      "hex": "#8c422a"
+    },
+    {
+      "index": 38,
+      "hex": "#d07537"
+    },
+    {
+      "index": 39,
+      "hex": "#f4ba5d"
+    },
+    {
+      "index": 40,
+      "hex": "#322828"
+    },
+    {
+      "index": 41,
+      "hex": "#6a645b"
+    },
+    {
+      "index": 42,
+      "hex": "#6b2f35"
+    },
+    {
+      "index": 43,
+      "hex": "#964442"
+    },
+    {
+      "index": 44,
+      "hex": "#201e26"
+    },
+    {
+      "index": 45,
+      "hex": "#4d5e6d"
+    }
+  ],
+  "accent_colors": [
+    {
+      "name": "fx_ice",
+      "hex": "#80a8bd"
+    },
+    {
+      "name": "fx_red",
+      "hex": "#b54144"
+    },
+    {
+      "name": "fx_gold",
+      "hex": "#f0d99b"
+    },
+    {
+      "name": "fx_white",
+      "hex": "#f4eed4"
+    },
+    {
+      "name": "fx_warm",
+      "hex": "#e9995c"
+    }
+  ],
+  "rules": {
+    "base_max": 48,
+    "accent_max": 16,
+    "anti_aliasing": false,
+    "semi_transparent": false,
+    "renderer_filter": "nearest"
+  }
+}
