@@ -14,7 +14,7 @@ G.A.load = function (onDone, onProgress) {
   Object.keys(B.anims).forEach(function (k) { files['ba:' + k] = B.anims[k].file; });
   Object.keys(B.masks).forEach(function (an) { Object.keys(B.masks[an]).forEach(function (ch) { files['bam:' + an + ':' + ch] = B.masks[an][ch]; }); });
   [['hum', AH], ['elf', AE], ['dwarf', AD], ['demon', AM2], ['dnh', ADN], ['wolf', AWF], ['cat', ACT], ['lizard', ALZ], ['dragon', ADR]].forEach(function (q) { if (!q[1]) return; files[q[0] + ':outfits'] = q[1].outfits.file; files[q[0] + ':mh'] = q[1].outfits.maskHair; files[q[0] + ':ms'] = q[1].outfits.maskSkin; if (q[1].portraits) files[q[0] + ':portraits'] = q[1].portraits.file; });
-  if (AHM) files['hmod:parts'] = AHM.file;
+  ['human', 'elf', 'dwarf'].forEach(function (r) { var H = G.A.HM && G.A.HM[r]; if (H) files['hmod:parts:' + r] = H.file; });
   files['ba:shadow'] = B.shadow; files['ba:fx'] = B.fx.file;
   Object.keys(B.tiles).forEach(function (k) { files['bat:' + k] = B.tiles[k]; });
   var keys = Object.keys(files), n = 0;
@@ -145,25 +145,29 @@ G.A.dirIndex = function (A, grp, vi, dir) {
 
 // ───── 인간 모듈러 조합 (머리 없는 복장 + 머리 바탕 + 얼굴 부품 + 헤어) ─────
 G.A.SKINS = ['#f6d2b0', '#eec29a', '#dba37c', '#c4875f', '#a96a45', '#7e4d33'];
-G.A.isMod = function (m) { return m.race === 'human' && AHM && G.S && G.S.settings.human === 'mod'; };
+G.A.HM = { human: AHM, elf: window.ASSET_HMOD_ELF, dwarf: window.ASSET_HMOD_DWARF };
+G.A.HMT = { human: { es: 0.62, bs: 0.55, ms: 0.45, hs: 1.25, ey: 4 }, elf: { es: 0.62, bs: 0.55, ms: 0.45, hs: 1.25, ey: 4 }, dwarf: { es: 0.6, bs: 0.55, ms: 0.45, hs: 1.2, ey: 4 } };
+G.A.isMod = function (m) { return !!G.A.HM[m.race] && G.S && G.S.settings.human === 'mod'; };
+G.A.hmN = function (H, pre) { var n = 0; while (H.frames[pre + '_' + n]) n++; return n; };
 G.A.modLook = function (m, L) {
   var h = G.A.hash(String(m.id) + m.name + 'mod');
+  var H = G.A.HM[m.race], nm = G.A.hmN(H, 'mouth'), nb = G.A.hmN(H, 'beardF');
   if (L.hs == null) L.hs = h % 12;
-  if (L.hcol == null) L.hcol = L.hs === 11 ? 6 : (h >> 4) % 12;
-  if (L.sk == null) L.sk = (h >> 8) % 4 + (m.age > 40 ? 0 : 0);
+  if (L.hcol == null) L.hcol = (m.race === 'human' && L.hs === 11) || (m.race !== 'human' && L.hs === (m.race === 'dwarf' ? 11 : 8)) ? 6 : (h >> 4) % 12;
+  if (L.sk == null) L.sk = m.race === 'human' ? (h >> 8) % 4 : (h >> 8) % 2;
   if (L.br == null) L.br = (h >> 11) % 5;
-  if (L.mo == null) L.mo = [0, 1, 2, 3, 4, 5][(h >> 14) % 6];
-  if (L.bd == null) L.bd = (m.age >= 30 && (h >> 17) % 3 === 0) ? (h >> 19) % 5 : -1;
+  if (L.mo == null) L.mo = (h >> 14) % nm;
+  if (L.bd == null) L.bd = m.race === 'elf' || !nb ? -1 : m.race === 'dwarf' ? ((h >> 17) % 5 === 0 ? -1 : (h >> 19) % nb) : (m.age >= 30 && (h >> 17) % 3 === 0) ? (h >> 19) % nb : -1;
   var st = m.stats || {}, b = ((st.str || 8) + (st.con || 8)) / 2;
   L.bld = b < 7 ? 0 : b < 12 ? 1 : 2;
   return L;
 };
-G.A.partCanvas = function (key, target) {
-  var fr = AHM.frames[key], im = G.A.img['hmod:parts'], w = fr[2], h = fr[3];
-  var ck = 'pc:' + key + '|' + (target || ''); if (G.A.recolorCache[ck]) return G.A.recolorCache[ck];
+G.A.partCanvas = function (race, key, target) {
+  var H = G.A.HM[race], fr = H.frames[key], im = G.A.img['hmod:parts:' + race], w = fr[2], h = fr[3];
+  var ck = 'pc:' + race + key + '|' + (target || ''); if (G.A.recolorCache[ck]) return G.A.recolorCache[ck];
   var c = document.createElement('canvas'); c.width = w; c.height = h; var x = c.getContext('2d'); x.imageSmoothingEnabled = false;
   x.drawImage(im, fr[0], fr[1], w, h, 0, 0, w, h);
-  var c0 = AHM.c0[key];
+  var c0 = H.c0[key];
   if (target && c0) {
     var T = G.A.hex(target), mul = [0, 1, 2].map(function (i) { return Math.min(1, T[i] / Math.max(1, c0[i])); });
     var add = [0, 1, 2].map(function (i) { return Math.max(0, T[i] - c0[i] * mul[i]); });
@@ -175,34 +179,36 @@ G.A.partCanvas = function (key, target) {
 };
 G.A.modFrame = function (m, dir, recolor) {
   var L = G.A.modLook(m, G.A.humanLook(m)), d = { down: 0, left: 1, up: 2, right: 3 }[dir] || 0;
-  var ck = 'mf:' + [L.hg, L.vi, L.bld, L.hs, L.hcol, L.sk, L.eye, L.br, L.mo, L.bd, d, recolor ? 1 : 0].join('|');
+  var race = m.race, H = G.A.HM[race], T = G.A.HMT[race], ck = 'mf:' + [race, L.hg, L.vi, L.bld, L.hs, L.hcol, L.sk, L.eye, L.br, L.mo, L.bd, d, recolor ? 1 : 0].join('|');
   if (G.A.recolorCache[ck]) return G.A.recolorCache[ck];
-  if (!G.A.img['hmod:parts'] || !G.A.img['hmod:parts'].width) return null;
-  var F = AHM.frames, W = 170, H = 170, cx = W / 2;
-  var cv = document.createElement('canvas'); cv.width = W; cv.height = H; var x = cv.getContext('2d'); x.imageSmoothingEnabled = true; x.imageSmoothingQuality = 'high';
+  if (!G.A.img['hmod:parts:' + race] || !G.A.img['hmod:parts:' + race].width) return null;
+  var F = H.frames, W = 170, HH = 170, cx = W / 2;
+  var cv = document.createElement('canvas'); cv.width = W; cv.height = HH; var x = cv.getContext('2d'); x.imageSmoothingEnabled = true; x.imageSmoothingQuality = 'high';
   var put = function (c, px, py, sc) { sc = sc || 1; x.drawImage(c, Math.round(px), Math.round(py), Math.round(c.width * sc), Math.round(c.height * sc)); };
-  var okey = 'out_' + L.hg + '_' + L.vi + '_' + d; if (!F[okey]) okey = 'out_swordsman_0_' + d;
-  var oc = G.A.partCanvas(okey), ox = cx - oc.width / 2, oy = 150 - oc.height; put(oc, ox, oy);
-  var hk = 'head_' + L.bld + '_' + d, hc = G.A.partCanvas(hk, recolor ? G.A.SKINS[L.sk] : null), hx = cx - hc.width / 2, hy = oy - hc.height + 8;
+  var og = G.A.HGRP[m.cls] || 'swordsman', okey = 'out_' + og + '_' + L.vi + '_' + d; if (!F[okey]) okey = 'out_swordsman_0_' + d;
+  var oc = G.A.partCanvas(race, okey), ox = cx - oc.width / 2, oy = 150 - oc.height; put(oc, ox, oy);
+  var hk = 'head_' + L.bld + '_' + d, hc = G.A.partCanvas(race, hk, recolor ? G.A.SKIN_OF(race, L.sk) : null), hx = cx - hc.width / 2, hy = oy - hc.height + 8;
   put(hc, hx, hy);
-  var hcx = hx + hc.width / 2, hcy = hy + hc.height / 2, sc = function (k, s) { var c = G.A.partCanvas(k); return { c: c, w: Math.round(c.width * s), h: Math.round(c.height * s) }; };
+  var hcx = hx + hc.width / 2, hcy = hy + hc.height / 2, sc = function (k, s) { var c = G.A.partCanvas(race, k); return { c: c, w: Math.round(c.width * s), h: Math.round(c.height * s) }; };
   var draw = function (o, px, py) { x.drawImage(o.c, Math.round(px), Math.round(py), o.w, o.h); };
   if (d === 0) {
-    var l = sc('eyeF_' + L.eye * 2, 0.62), r = sc('eyeF_' + (L.eye * 2 + 1), 0.62), ey = hcy + 4;
+    var l = sc('eyeF_' + L.eye * 2, T.es), r = sc('eyeF_' + (L.eye * 2 + 1), T.es), ey = hcy + T.ey;
     draw(l, hcx - l.w - 4, ey - l.h / 2); draw(r, hcx + 4, ey - r.h / 2);
-    var b = sc('brow_' + L.br, 0.55); draw(b, hcx - b.w / 2, ey - l.h / 2 - b.h);
-    var mo = sc('mouth_' + L.mo, 0.45); draw(mo, hcx - mo.w / 2, hy + hc.height - mo.h - 9);
+    var b = sc('brow_' + L.br, T.bs); draw(b, hcx - b.w / 2, ey - l.h / 2 - b.h);
+    var mo = sc('mouth_' + L.mo, T.ms); draw(mo, hcx - mo.w / 2, hy + hc.height - mo.h - 9);
     if (L.bd >= 0) { var bb = sc('beardF_' + L.bd, 0.75); draw(bb, hcx - bb.w / 2, hy + hc.height - bb.h + 1); }
   } else if (d === 1 || d === 3) {
-    var fx = d === 1 ? -1 : 1, e = sc('eyeS_' + (L.eye * 2 + (d === 1 ? 0 : 1)), 0.62);
-    draw(e, hcx + fx * 10 - e.w / 2, hcy - e.h / 2 + 4);
-    var m2 = sc('mouth_' + L.mo, 0.4); draw(m2, hcx + fx * 13 - m2.w / 2, hy + hc.height - m2.h - 9);
+    var fx = d === 1 ? -1 : 1, e = sc('eyeS_' + (L.eye * 2 + (d === 1 ? 0 : 1)), T.es);
+    draw(e, hcx + fx * 10 - e.w / 2, hcy - e.h / 2 + T.ey);
+    var m2 = sc('mouth_' + L.mo, T.ms * 0.9); draw(m2, hcx + fx * 13 - m2.w / 2, hy + hc.height - m2.h - 9);
     if (L.bd >= 0) { var bs = sc('beardS_' + L.bd, 0.75); draw(bs, hcx + fx * 9 - bs.w / 2 + (fx > 0 ? 3 : -3), hy + hc.height - bs.h + 1); }
   }
-  var hair = G.A.partCanvas('hair_' + L.hs + '_' + d, recolor ? AHM.sw[L.hcol] : null), hs = 1.25;
+  if (race === 'dwarf' && L.hs === 0) return G.A.recolorCache[ck] = { cv: cv, ax: cx, ay: 150 }; // 민머리
+  var hair = G.A.partCanvas(race, 'hair_' + L.hs + '_' + d, recolor ? H.sw[L.hcol] : null), hs = T.hs;
   x.drawImage(hair, Math.round(hcx - hair.width * hs / 2), Math.round(hcy - hair.height * hs + 14), Math.round(hair.width * hs), Math.round(hair.height * hs));
   return G.A.recolorCache[ck] = { cv: cv, ax: cx, ay: 150 };
 };
+G.A.SKIN_OF = function (race, i) { return race === 'human' ? G.A.SKINS[i] : race === 'elf' ? ['#f2d2b4', '#e4bc98'][i % 2] : ['#f0c4a0', '#dba37c'][i % 2]; };
 G.A.humanFrame = function (m, dir, recolor) {
   if (G.A.isMod(m)) return G.A.modFrame(m, dir, recolor !== false);
   var SO = G.A.setOf(m), A = SO.A, pre = SO.p, L = G.A.humanLook(m), PM = A.portraits.meta[L.pv];
